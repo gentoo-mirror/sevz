@@ -1,0 +1,38 @@
+From 9547faf9937c43e05f220ea4bb7bdbb20b276a2b Mon Sep 17 00:00:00 2001
+From: Sevz17 <leohdz172@outlook.com>
+Date: Wed, 8 Sep 2021 23:55:34 -0500
+Subject: [PATCH] no make manpages
+
+---
+ Makefile | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index c8b7e4c..243c8f9 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,20 +1,15 @@
+ BINS = dtao
+-MANS = doc/dtao.1
+ 
+ PREFIX ?= /usr/local
+ CFLAGS += -Wall -Wextra -Wno-unused-parameter -g
+ 
+-all: $(BINS) $(MANS)
++all: $(BINS)
+ 
+ clean:
+ 	$(RM) $(BINS) $(addsuffix .o,$(BINS))
+ 
+ install: all
+ 	install -D -t $(PREFIX)/bin $(BINS)
+-	install -Dm644 -t $(PREFIX)/share/man/man1 $(MANS)
+-
+-$(MANS): %: %.ronn
+-	ronn -r $<
+ 
+ WAYLAND_PROTOCOLS=$(shell pkg-config --variable=pkgdatadir wayland-protocols)
+ WAYLAND_SCANNER=$(shell pkg-config --variable=wayland_scanner wayland-scanner)
+-- 
+2.32.0
+

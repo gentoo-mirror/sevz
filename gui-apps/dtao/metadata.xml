@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<name>Leonardo Hernandez Hernandez</name>
+		<email>leohdz172@outlook.com</email>
+	</maintainer>
+	<longdescription lang="en">
+		dtao is a stdin-based general-purpose bar for Wayland, modeled after the venerable dzen2.
+		At the moment, it can display text from stdin on a layer-shell and change foreground and background colors,
+		but at this point it should be easy to port more features from dzen without needing too much Wayland knowhow.
+	</longdescription>
+	<upstream>
+		<bugs-to>https://github.com/djpohly/dtao/issues</bugs-to>
+		<doc>https://github.com/djpohly/dtao/blob/custom/README.md</doc>
+	</upstream>
+</pkgmetadata>
