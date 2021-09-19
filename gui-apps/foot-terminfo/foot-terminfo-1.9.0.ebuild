@@ -3,19 +3,14 @@
 
 EAPI=8
 
-if [[ ${PV} != *9999* ]]; then
-	SRC_URI="https://codeberg.org/dnkl/foot/archive/${PV}.tar.gz  -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
-	S="${WORKDIR}/foot"
-else
-	inherit git-r3
-	EGIT_REPO_URI="https://codeberg.org/dnkl/foot.git"
-fi
-
 DESCRIPTION="Terminfo for foot, a great Wayland terminal emulator"
 HOMEPAGE="https://codeberg.org/dnkl/foot"
+SRC_URI="https://codeberg.org/dnkl/foot/archive/${PV}.tar.gz  -> foot-${PV}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
+
+KEYWORDS="~amd64"
+S="${WORKDIR}/foot"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
