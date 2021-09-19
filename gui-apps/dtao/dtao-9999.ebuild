@@ -3,21 +3,16 @@
 
 EAPI=8
 
+inherit git-r3
+
 DESCRIPTION="dzen for Wayland"
 HOMEPAGE="https://github.com/djpohly/dtao"
-
-if [[ ${PV} == 9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/djpohly/dtao"
-	KEYWORDS=""
-else
-	SRC_URI="https://github.com/djpohly/dtao/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64"
-fi
+EGIT_REPO_URI="https://github.com/djpohly/dtao"
+KEYWORDS=""
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="+man"
+IUSE=""
 
 RDEPEND="
 	dev-libs/wayland
@@ -29,13 +24,8 @@ BDEPEND="
 	dev-libs/wayland-protocols
 	dev-util/wayland-scanner
 	virtual/pkgconfig
-	man? ( app-text/ronn )
+	app-text/ronn
 "
-
-src_prepare() {
-	use man || eapply "${FILESDIR}/${PN}-no-make-manpages.patch"
-	eapply_user
-}
 
 src_install() {
 	emake PREFIX="${ED}/usr" install
