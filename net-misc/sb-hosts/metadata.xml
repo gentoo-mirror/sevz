@@ -11,7 +11,8 @@
 		<doc>https://github.com/StevenBlack/hosts/wiki</doc>
 	</upstream>
 	<longdescription>
-		A hosts file from several well-curated sources
+		Consolidating and extending hosts files from several well-curated sources.
+		Optionally pick extensions for porn, social media, and other categories.
 	</longdescription>
 	<use>
 		<flag name="fakenews">Add fake news sites</flag>
