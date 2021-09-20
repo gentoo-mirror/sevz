@@ -5,9 +5,6 @@
 		<name>Leonardo Hernandez Hernandez</name>
 		<email>leohdz172@outlook.com</email>
 	</maintainer>
-	<longdescription lang="en">
-		An implementation of the MPRIS protocol for MPD.
-	</longdescription>
 	<upstream>
 		<bugs-to>https://github.com/natsukagami/mpd-mpris/issues</bugs-to>
 		<doc>https://github.com/natsukagami/mpd-mpris/blob/master/README.md</doc>
