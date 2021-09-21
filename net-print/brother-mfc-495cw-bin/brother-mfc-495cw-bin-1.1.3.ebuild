@@ -18,21 +18,13 @@ SLOT="0"
 
 KEYWORDS="~amd64 ~x86"
 
+MULTILIB_COMPAT=( abi_x86_{32,64} )
 RESTRICT="mirror strip"
 
 DEPEND="net-print/cups"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}
-
-#pkg_setup() {
-#	CONFIG_CHECK=""
-#	if use amd64; then
-#		CONFIG_CHECK="${CONFIG_CHECK} ~IA32_EMULATION"
-#	fi
-
-#	linux-info_pkg_setup
-#}
 
 src_prepare() {
 	eapply_user
