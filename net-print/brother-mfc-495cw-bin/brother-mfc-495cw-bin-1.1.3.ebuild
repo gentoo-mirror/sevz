@@ -6,25 +6,19 @@ EAPI=8
 inherit rpm multilib-minimal
 
 DESCRIPTION="Brother printer driver for MFC-495CW"
-
 HOMEPAGE="http://support.brother.com"
-
 SRC_URI="https://download.brother.com/welcome/dlf006143/mfc495cwlpr-1.1.3-1.i386.rpm
 	https://download.brother.com/welcome/dlf006145/mfc495cwcupswrapper-1.1.3-1.i386.rpm"
-
 LICENSE="Brother-EULA GPL-2"
-
-SLOT="0"
-
 KEYWORDS="~amd64 ~x86"
 
 MULTILIB_COMPAT=( abi_x86_{32,64} )
+SLOT="0"
 RESTRICT="mirror strip"
+S=${WORKDIR}
 
 DEPEND="net-print/cups"
 RDEPEND="${DEPEND}"
-
-S=${WORKDIR}
 
 src_prepare() {
 	eapply_user
