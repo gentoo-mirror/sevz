@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit flag-o-matic savedconfig toolchain-funcs git-r3
+inherit savedconfig git-r3
 
 DESCRIPTION="patched version of dwl"
 HOMEPAGE="https://github.com/Sevz17/dwl"
@@ -35,8 +35,7 @@ src_prepare() {
 }
 
 src_configure() {
-	use X && append-cppflags -DXWAYLAND
-	tc-export CC
+	sed -i "s/^.*CFLAGS += -DXWAYLAND/$(usex X 'CFLAGS += -DXWAYLAND' '')/g" config.mk
 }
 
 src_install() {
