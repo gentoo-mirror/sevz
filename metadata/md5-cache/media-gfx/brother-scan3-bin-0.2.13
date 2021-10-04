@@ -1,0 +1,15 @@
+BDEPEND=app-arch/rpm2targz
+DEFINED_PHASES=install postinst prerm unpack
+DEPEND=media-gfx/sane-backends[usb]
+DESCRIPTION=Brother scanner driver (brscan3)
+EAPI=8
+HOMEPAGE=http://support.brother.com
+INHERIT=rpm
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=media-gfx/sane-backends[usb] virtual/libusb:0
+RESTRICT=mirror strip
+SLOT=0
+SRC_URI=amd64? ( https://download.brother.com/welcome/dlf006644/brscan3-0.2.13-1.x86_64.rpm ) x86? ( https://download.brother.com/welcome/dlf006643/brscan3-0.2.13-1.i386.rpm )
+_eclasses_=estack	055c42df72f76a4f45ec92b35e83cd56	rpm	f73e907469f65e52192f110dec72dce0
+_md5_=fc3177ce704e827d0acd4522286a9762

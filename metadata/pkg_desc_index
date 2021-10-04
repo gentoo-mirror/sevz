@@ -1,0 +1,8 @@
+gui-apps/dtao 9999: dzen for Wayland
+gui-apps/foot 1.9.0 1.9.2: A fast, lightweight and minimalistic Wayland terminal emulator
+gui-wm/dwl 9999: patched version of dwl
+media-gfx/brother-scan3-bin 0.2.13: Brother scanner driver (brscan3)
+media-sound/mpd-mpris 0.3.1: An implementation of the MPRIS protocol for MPD.
+net-misc/sb-hosts 9999: Consolidating and extending hosts files from several well-curated sources
+net-print/brother-mfc-495cw-bin 1.1.3: Brother printer driver for MFC-495CW
+x11-themes/archlinux-wallpaper 1.6.1: Arch Linux wallpapers
