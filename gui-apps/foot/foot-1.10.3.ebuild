@@ -18,7 +18,7 @@ DESCRIPTION="A fast, lightweight and minimalistic Wayland terminal emulator"
 HOMEPAGE="https://codeberg.org/dnkl/foot"
 LICENSE="MIT"
 SLOT="0"
-IUSE="ime +grapheme-clustering pgo lto"
+IUSE="ime +grapheme-clustering pgo themes"
 
 DEPEND="
 	grapheme-clustering? ( dev-libs/libutf8proc )
@@ -41,18 +41,15 @@ BDEPEND="
 "
 
 src_configure() {
-	filter-flags '-flto*'
+	use pgo && tc-is-clang && append-cflags -Wno-ignored-optimization-argument
 
 	local emesonargs=(
 		$(meson_use ime)
 		$(meson_feature grapheme-clustering)
-		$(meson_use lto b_lto)
 		"-Dterminfo=disabled"
 		"-Dwerror=false"
+		$(meson_use themes)
 	)
-	if use lto; then
-		emesonargs+=( "-Db_lto_threads=$(makeopts_jobs)" )
-	fi
 	if use pgo; then
 		emesonargs+=( "-Db_pgo=generate" )
 	fi
@@ -62,19 +59,22 @@ src_configure() {
 src_compile() {
 	meson_src_compile
 
+	BUILD_DIR="${WORKDIR}/${P}-build"
 	if use pgo; then
-		local build_dir="../${P}-build"
-		local script_options="--scroll --scroll-region --colors-regular --colors-bright --colors-256 --colors-rgb --attr-bold --attr-italic --attr-underline --sixel"
-		tmp_file=$(mktemp)
-
-		$build_dir/footclient --version
-		$build_dir/foot --version
+		tmp_file="$(mktemp -p $(pwd))"
+		"${BUILD_DIR}"/footclient --version || die
+		"${BUILD_DIR}"/foot --version || die
 		./scripts/generate-alt-random-writes.py --rows=67 --cols=135 \
-		${script_options} ${tmp_file}
-		$build_dir/pgo ${tmp_file} ${tmp_file} ${tmp_file}
+			--scroll --scroll-region --colors-regular --colors-bright \
+			--colors-256 --colors-rgb --attr-bold --attr-italic \
+			--attr-underline --sixel ${tmp_file} || die
+		"${BUILD_DIR}"/pgo "${tmp_file}" "${tmp_file}" "${tmp_file}" || die
 		rm "${tmp_file}"
 
-		meson configure -Db_pgo=use $build_dir
+		tc-is-clang && llvm-profdata merge "${S}"/default_*profraw --output="${BUILD_DIR}"/default.profdata || die
+
+		meson configure -Db_pgo=use "${BUILD_DIR}" || die
+
 		meson_src_compile
 	fi
 }
