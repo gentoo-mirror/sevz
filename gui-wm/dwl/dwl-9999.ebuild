@@ -19,8 +19,8 @@ RDEPEND="
 	dev-libs/wayland
 	x11-libs/libxcb
 	x11-libs/libxkbcommon
-	>=gui-libs/wlroots-0.14:=[X(-)?]
-	<gui-libs/wlroots-0.15:=[X(-)?]
+	>=gui-libs/wlroots-0.15:=[X(-)?]
+	<gui-libs/wlroots-0.16:=[X(-)?]
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
@@ -36,7 +36,7 @@ src_prepare() {
 }
 
 src_configure() {
-	sed -i "s/^.*CFLAGS += -DXWAYLAND/$(usex X 'CFLAGS += -DXWAYLAND' '')/g" config.mk
+	sed -i "s/^.*CFLAGS += -DXWAYLAND/$(usex X 'CFLAGS += -DXWAYLAND' '')/g" config.mk || die
 }
 
 src_install() {
