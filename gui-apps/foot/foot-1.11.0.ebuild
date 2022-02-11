@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -18,10 +18,13 @@ DESCRIPTION="A fast, lightweight and minimalistic Wayland terminal emulator"
 HOMEPAGE="https://codeberg.org/dnkl/foot"
 LICENSE="MIT"
 SLOT="0"
-IUSE="ime +grapheme-clustering pgo"
+IUSE="ime +grapheme-clustering pgo themes"
 
 DEPEND="
-	grapheme-clustering? ( dev-libs/libutf8proc )
+	grapheme-clustering? (
+		dev-libs/libutf8proc
+		media-libs/fcft[harfbuzz]
+	)
 	dev-libs/wayland
 	media-libs/fcft
 	media-libs/fontconfig
@@ -32,24 +35,30 @@ DEPEND="
 RDEPEND="
 	${DEPEND}
 	gui-apps/foot-terminfo
+	|| (
+		>=sys-libs/ncurses-6.3
+		~gui-apps/foot-terminfo-${PV}
+	)
 "
 BDEPEND="
 	app-text/scdoc
 	dev-libs/tllist
 	dev-libs/wayland-protocols
-	sys-libs/ncurses
-	pgo? ( dev-libs/weston[headless] )
 "
 
 src_configure() {
+	use pgo && tc-is-clang && append-cflags -Wno-ignored-optimization-argument
+
 	local emesonargs=(
 		$(meson_use ime)
 		$(meson_feature grapheme-clustering)
 		"-Dterminfo=disabled"
 		"-Dwerror=false"
+		$(meson_use themes)
 	)
-	use pgo && emesonargs+=( "-Db_pgo=generate" )
-
+	if use pgo; then
+		emesonargs+=( "-Db_pgo=generate" )
+	fi
 	meson_src_configure
 }
 
@@ -57,23 +66,21 @@ src_compile() {
 	meson_src_compile
 
 	if use pgo; then
-		export XDG_RUNTIME_DIR="$(mktemp -p $(pwd) -d xdg-runtime-XXXXXX)"
-		weston --backend=headless-backend.so --socket=wayland-5 --idle-time=0 &
-		local compositor=$!
-		export WAYLAND_DISPLAY=wayland-5
+		tmp_file="$(mktemp -p $(pwd))"
+		"${BUILD_DIR}"/footclient --version || die
+		"${BUILD_DIR}"/foot --version || die
+		./scripts/generate-alt-random-writes.py --rows=67 --cols=135 \
+			--scroll --scroll-region --colors-regular --colors-bright \
+			--colors-256 --colors-rgb --attr-bold --attr-italic \
+			--attr-underline --sixel ${tmp_file} || die
+		"${BUILD_DIR}"/pgo "${tmp_file}" "${tmp_file}" "${tmp_file}" || die
+		rm "${tmp_file}"
 
-		local build_dir="../${P}-build"
+		tc-is-clang && llvm-profdata merge "${S}"/default_*profraw --output="${BUILD_DIR}"/default.profdata || die
 
-		foot_tmp_file=$(mktemp)
-		"${build_dir}"/footclient --version
-		"${build_dir}"/foot --config=/dev/null --term=xterm sh -c "./scripts/generate-alt-random-writes.py --scroll --scroll-region --colors-regular --colors-bright --colors-256 --colors-rgb --attr-bold --attr-italic --attr-underline --sixel ${foot_tmp_file} && cat ${foot_tmp_file}"
-		rm ${foot_tmp_file}
+		meson configure -Db_pgo=use "${BUILD_DIR}" || die
 
-		meson configure -Db_pgo=use "${build_dir}"
 		meson_src_compile
-
-		exit_code=$?
-		kill "${compositor}"
 	fi
 }
 

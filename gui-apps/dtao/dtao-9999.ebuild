@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -26,6 +26,8 @@ BDEPEND="
 	virtual/pkgconfig
 	app-text/ronn
 "
+
+PATCHES="${FILESDIR}/0001-fcft-3.0.0.patch"
 
 src_install() {
 	emake PREFIX="${ED}/usr" install
