@@ -10,4 +10,4 @@ PROPERTIES=live
 RDEPEND=dev-libs/wayland x11-libs/pixman media-libs/fcft
 SLOT=0
 _eclasses_=git-r3	cc875b0c1e9b3bdac1af0f82f3ba29da
-_md5_=39e82c646bceb99441cb4d6e64e7acd3
+_md5_=fd119767cbccbc8ba0e7e13ff1fd5632
