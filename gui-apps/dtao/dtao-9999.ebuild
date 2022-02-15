@@ -27,8 +27,6 @@ BDEPEND="
 	app-text/ronn
 "
 
-PATCHES="${FILESDIR}/0001-fcft-3.0.0.patch"
-
 src_install() {
 	emake PREFIX="${ED}/usr" install
 	einstalldocs
