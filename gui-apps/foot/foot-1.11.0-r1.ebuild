@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -21,7 +21,10 @@ SLOT="0"
 IUSE="ime +grapheme-clustering pgo themes"
 
 DEPEND="
-	grapheme-clustering? ( dev-libs/libutf8proc )
+	grapheme-clustering? (
+		dev-libs/libutf8proc:=
+		media-libs/fcft[harfbuzz]
+	)
 	dev-libs/wayland
 	media-libs/fcft
 	media-libs/fontconfig
@@ -31,13 +34,15 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
-	gui-apps/foot-terminfo
+	|| (
+		>=sys-libs/ncurses-6.3[-minimal]
+		~gui-apps/foot-terminfo-${PV}
+	)
 "
 BDEPEND="
 	app-text/scdoc
 	dev-libs/tllist
 	dev-libs/wayland-protocols
-	sys-libs/ncurses
 "
 
 src_configure() {
@@ -59,7 +64,6 @@ src_configure() {
 src_compile() {
 	meson_src_compile
 
-	BUILD_DIR="${WORKDIR}/${P}-build"
 	if use pgo; then
 		tmp_file="$(mktemp -p $(pwd))"
 		"${BUILD_DIR}"/footclient --version || die
