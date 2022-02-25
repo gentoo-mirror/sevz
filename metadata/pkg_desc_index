@@ -1,5 +1,5 @@
 gui-apps/dtao 9999: dzen for Wayland
-gui-apps/foot 1.10.3 1.11.0: A fast, lightweight and minimalistic Wayland terminal emulator
+gui-apps/foot 1.10.3-r1 1.11.0-r1: A fast, lightweight and minimalistic Wayland terminal emulator
 gui-wm/dwl 9999: patched version of dwl
 media-gfx/brother-scan3-bin 0.2.13: Brother scanner driver (brscan3)
 media-sound/mpd-mpris 0.3.1: An implementation of the MPRIS protocol for MPD.
