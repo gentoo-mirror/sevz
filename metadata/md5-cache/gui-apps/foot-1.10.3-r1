@@ -12,5 +12,5 @@ LICENSE=MIT
 RDEPEND=grapheme-clustering? ( dev-libs/libutf8proc ) dev-libs/wayland media-libs/fcft media-libs/fontconfig media-libs/freetype x11-libs/libxkbcommon x11-libs/pixman || ( >=sys-libs/ncurses-6.3[-minimal] ~gui-apps/foot-terminfo-1.10.3 )
 SLOT=0
 SRC_URI=https://codeberg.org/dnkl/foot/archive/1.10.3.tar.gz -> foot-1.10.3.tar.gz
-_eclasses_=multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	ninja-utils	38c85b725d0467e51954ea921b6c104b	toolchain-funcs	ec8bbc28394c7305b43ea07164bd8f5f	multilib	5ca4e49abed8e3a2f7b56920eadee157	python-utils-r1	1d1b325c00c1d24c564a1b49327ec3c5	meson	1994a5aef5d4f5798b92f64d6f9a6003	xdg-utils	ac0e315a3688929e34ac75b139e7349a	xdg	6024fbc93167fad782e2032933654857	flag-o-matic	69394e25812406faa1f90edaf4969395
+_eclasses_=multiprocessing	b4e253ab22cef7b1085e9b67c7a3b730	ninja-utils	38c85b725d0467e51954ea921b6c104b	toolchain-funcs	ec8bbc28394c7305b43ea07164bd8f5f	multilib	5ca4e49abed8e3a2f7b56920eadee157	python-utils-r1	7870d60e8b98856ef02d33397fd5ec0f	meson	1994a5aef5d4f5798b92f64d6f9a6003	xdg-utils	ac0e315a3688929e34ac75b139e7349a	xdg	6024fbc93167fad782e2032933654857	flag-o-matic	69394e25812406faa1f90edaf4969395
 _md5_=112cbde7efb9193118d480e04d3264f9
