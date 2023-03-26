@@ -10,5 +10,5 @@ LICENSE=MIT
 PROPERTIES=live
 RDEPEND=
 SLOT=0
-_eclasses_=git-r3	c57c50c922e121043788de0b40ada60a	portability	58227860123d3e8da23290064ce3373e	savedconfig	8b5f9d995a970e49cd427c55d5840285
+_eclasses_=git-r3	27e13c09a4c7e4c78ac812f74727e676	portability	964493f201f557a5c6baccacccf45ee2	savedconfig	8b5f9d995a970e49cd427c55d5840285
 _md5_=2b00e72bd13baab1fb0587c628039730
