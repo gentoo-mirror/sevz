@@ -6,6 +6,6 @@
 		<name>Leonardo Hernández Hernández</name>
 	</maintainer>
 	<upstream>
-		<remote-id type="github">xyproto/archlinux-wallpaper</remote-id>
+		<remote-id type="kde-invent">plasma/breeze</remote-id>
 	</upstream>
 </pkgmetadata>

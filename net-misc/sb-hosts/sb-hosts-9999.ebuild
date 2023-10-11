@@ -1,31 +1,21 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit git-r3 savedconfig
 
-EGIT_REPO_URI="https://github.com/StevenBlack/hosts.git"
-SRC_URI=""
-
 DESCRIPTION="Consolidating and extending hosts files from several well-curated sources"
 HOMEPAGE="https://github.com/StevenBlack/hosts"
+EGIT_REPO_URI="https://github.com/StevenBlack/hosts.git"
 
 LICENSE="MIT"
 SLOT="0"
 IUSE="fakenews gambling porn social"
 
-RDEPEND="
-"
-
-DEPEND="${RDEPEND}
-"
-
 src_prepare() {
 	default
-
 	restore_config myhosts
-
 }
 
 src_install() {

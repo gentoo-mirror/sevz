@@ -6,6 +6,6 @@
 		<name>Leonardo Hernández Hernández</name>
 	</maintainer>
 	<upstream>
-		<remote-id type="github">xyproto/archlinux-wallpaper</remote-id>
+		<remote-id type="github">FedoraQt/adwaita-qt</remote-id>
 	</upstream>
 </pkgmetadata>
