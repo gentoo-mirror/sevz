@@ -1,14 +1,12 @@
 BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=install postinst prepare unpack
-DEPEND=
 DESCRIPTION=Consolidating and extending hosts files from several well-curated sources
-EAPI=7
+EAPI=8
 HOMEPAGE=https://github.com/StevenBlack/hosts
 INHERIT=git-r3 savedconfig
 IUSE=fakenews gambling porn social savedconfig
 LICENSE=MIT
 PROPERTIES=live
-RDEPEND=
 SLOT=0
 _eclasses_=git-r3	2358a7b20091609e24bd3a83b3ac5991	portability	a74d533f258f1f435be71312558c12f9	savedconfig	8b5f9d995a970e49cd427c55d5840285
-_md5_=2b00e72bd13baab1fb0587c628039730
+_md5_=03a874bff9fa10e4bb5eddb1746b8d89

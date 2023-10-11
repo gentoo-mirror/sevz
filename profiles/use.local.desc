@@ -3,9 +3,8 @@
 # * generated automatically using pmaint *
 
 gui-apps/foot:grapheme-clustering - Enable grapheme clustering support
-gui-apps/foot:ime - Enable IME support
 gui-apps/foot:pgo - Build using Profile Guided Optimization (PGO)
-gui-apps/foot:themes - Install themes
+gui-apps/fuzzel:dmenu - Install dmenu-like scrips, requires stest from x11-misc/dmenu
 net-misc/sb-hosts:fakenews - Add fake news sites
 net-misc/sb-hosts:gambling - Add common online betting sites
 net-misc/sb-hosts:porn - Add porn sites

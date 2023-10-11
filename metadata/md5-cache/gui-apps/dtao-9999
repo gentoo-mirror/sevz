@@ -1,4 +1,4 @@
-BDEPEND=dev-libs/wayland-protocols dev-util/wayland-scanner virtual/pkgconfig app-text/ronn >=dev-vcs/git-1.8.2.1[curl]
+BDEPEND=dev-libs/wayland-protocols dev-util/wayland-scanner virtual/pkgconfig app-text/ronn-ng >=dev-vcs/git-1.8.2.1[curl]
 DEFINED_PHASES=install unpack
 DEPEND=dev-libs/wayland x11-libs/pixman media-libs/fcft
 DESCRIPTION=dzen for Wayland
@@ -10,4 +10,4 @@ PROPERTIES=live
 RDEPEND=dev-libs/wayland x11-libs/pixman media-libs/fcft
 SLOT=0
 _eclasses_=git-r3	2358a7b20091609e24bd3a83b3ac5991
-_md5_=fd119767cbccbc8ba0e7e13ff1fd5632
+_md5_=1bf805eab52e020d51c2eb7d298e2346
