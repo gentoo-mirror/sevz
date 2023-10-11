@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<name>Leonardo Hernandez Hernandez</name>
 		<email>leohdz172@proton.me</email>
+		<name>Leonardo Hernández Hernández</name>
 	</maintainer>
 	<longdescription lang="en">
 		dtao is a stdin-based general-purpose bar for Wayland, modeled after the venerable dzen2.
