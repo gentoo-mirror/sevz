@@ -1,0 +1,3 @@
+#!/bin/sh
+exec ${SHELL:-"/bin/sh"} -c "$(fuzzel_path | fuzzel -d "$@")"
+#fuzzel_path | fuzzel -d "$@" | ${SHELL:-"/bin/sh"} &
