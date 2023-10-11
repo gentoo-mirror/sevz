@@ -9,4 +9,7 @@
 		<flag name="grapheme-clustering">Enable grapheme clustering support</flag>
 		<flag name="pgo">Build using Profile Guided Optimization (PGO)</flag>
 	</use>
+	<upstream>
+		<remote-id type="codeberg">dnkl/foot</remote-id>
+	</upstream>
 </pkgmetadata>
