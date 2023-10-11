@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>leohdz172@proton.me</email>
+		<name>Leonardo Hernández Hernández</name>
+	</maintainer>
+	<upstream>
+		<remote-id type="kde-invent">plasma/breeze</remote-id>
+	</upstream>
+</pkgmetadata>
