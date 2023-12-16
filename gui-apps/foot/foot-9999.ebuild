@@ -3,7 +3,9 @@
 
 EAPI=8
 
-inherit flag-o-matic meson ninja-utils toolchain-funcs xdg
+PYTHON_COMPAT=( python3_{10..12} )
+
+inherit flag-o-matic meson ninja-utils python-any-r1 toolchain-funcs xdg
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="https://codeberg.org/dnkl/foot/archive/${PV}.tar.gz  -> ${P}.tar.gz"
@@ -44,7 +46,10 @@ BDEPEND="
 	app-text/scdoc
 	>=dev-libs/wayland-protocols-1.32
 	dev-util/wayland-scanner
-	pgo? ( gui-libs/wlroots[tinywl(-)] )
+	pgo? (
+		gui-libs/wlroots[tinywl(-)]
+		${PYTHON_DEPS}
+	)
 "
 
 virtwl() {
@@ -69,6 +74,7 @@ virtwl() {
 }
 
 pkg_setup() {
+	python-any-r1_pkg_setup
 	# Avoid PGO profiling problems due to enviroment leakage
 	# These should *always* be cleaned up anyway
 	unset \
@@ -117,6 +123,11 @@ pkg_setup() {
 	xdg_environment_reset
 }
 
+src_prepare() {
+	default
+	python_fix_shebang ./scripts
+}
+
 src_configure() {
 	if use pgo; then
 		tc-is-clang && append-cflags -Wno-ignored-optimization-argument
@@ -144,7 +155,7 @@ src_compile() {
 			llvm-profdata merge "${BUILD_DIR}"/default_*profraw --output="${BUILD_DIR}"/default.profdata || die
 		fi
 
-		meson configure -Db_pgo=use "${BUILD_DIR}" || die
+		meson_src_configure -Db_pgo=use
 
 		eninja -C "${BUILD_DIR}"
 	fi
@@ -152,7 +163,7 @@ src_compile() {
 
 src_test() {
 	xdg_environment_reset
-	meson configure -Dtests=true "${BUILD_DIR}" || die
+	meson_src_configure -Dtests=true
 	meson_src_test
 }
 
