@@ -144,7 +144,7 @@ src_compile() {
 			llvm-profdata merge "${BUILD_DIR}"/default_*profraw --output="${BUILD_DIR}"/default.profdata || die
 		fi
 
-		meson configure -Db_pgo=use "${BUILD_DIR}" || die
+		meson_src_configure -Db_pgo=use
 
 		eninja -C "${BUILD_DIR}"
 	fi
@@ -152,7 +152,7 @@ src_compile() {
 
 src_test() {
 	xdg_environment_reset
-	meson configure -Dtests=true "${BUILD_DIR}" || die
+	meson_src_configure -Dtests=true
 	meson_src_test
 }
 
