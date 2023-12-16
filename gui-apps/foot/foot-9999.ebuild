@@ -3,7 +3,9 @@
 
 EAPI=8
 
-inherit flag-o-matic meson ninja-utils toolchain-funcs xdg
+PYTHON_COMPAT=( python3_{10..12} )
+
+inherit flag-o-matic meson ninja-utils python-any-r1 toolchain-funcs xdg
 
 if [[ ${PV} != *9999* ]]; then
 	SRC_URI="https://codeberg.org/dnkl/foot/archive/${PV}.tar.gz  -> ${P}.tar.gz"
@@ -44,7 +46,10 @@ BDEPEND="
 	app-text/scdoc
 	>=dev-libs/wayland-protocols-1.32
 	dev-util/wayland-scanner
-	pgo? ( gui-libs/wlroots[tinywl(-)] )
+	pgo? (
+		gui-libs/wlroots[tinywl(-)]
+		${PYTHON_DEPS}
+	)
 "
 
 virtwl() {
@@ -69,6 +74,7 @@ virtwl() {
 }
 
 pkg_setup() {
+	python-any-r1_pkg_setup
 	# Avoid PGO profiling problems due to enviroment leakage
 	# These should *always* be cleaned up anyway
 	unset \
@@ -115,6 +121,11 @@ pkg_setup() {
 		shopt -u nullglob
 	fi
 	xdg_environment_reset
+}
+
+src_prepare() {
+	default
+	python_fix_shebang ./scripts
 }
 
 src_configure() {
