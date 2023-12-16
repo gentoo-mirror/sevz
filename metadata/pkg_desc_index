@@ -1,7 +1,7 @@
 gui-apps/dtao 9999: dzen for Wayland
 gui-apps/foot 9999: A fast, lightweight and minimalistic Wayland terminal emulator
 gui-apps/fuzzel 9999: Application launcher for wlroots based Wayland compositors.
-kde-plasma/breeze 5.27.8-r1 5.27.9: Breeze visual style for the Plasma desktop (just xcursor theme)
+kde-plasma/breeze 5.27.8-r1 5.27.9 5.27.10: Breeze visual style for the Plasma desktop (just xcursor theme)
 net-misc/sb-hosts 9999: Consolidating and extending hosts files from several well-curated sources
-x11-themes/adwaita-qt 1.4.2: A style to bend Qt applications to look like they belong into GNOME Shell
+x11-themes/adwaita-qt 1.4.2 1.4.2-r1: A style to bend Qt applications to look like they belong into GNOME Shell
 x11-themes/archlinux-wallpaper 1.6.1: Arch Linux wallpapers
