@@ -8,5 +8,5 @@ IUSE=fakenews gambling porn social savedconfig
 LICENSE=MIT
 PROPERTIES=live
 SLOT=0
-_eclasses_=git-r3	5133e393e8717a3a093660f990801dc1	portability	a74d533f258f1f435be71312558c12f9	savedconfig	8b5f9d995a970e49cd427c55d5840285
+_eclasses_=git-r3	86fa1f157b70b9d2ff340c4633b1cf4b	portability	a74d533f258f1f435be71312558c12f9	savedconfig	8b5f9d995a970e49cd427c55d5840285
 _md5_=03a874bff9fa10e4bb5eddb1746b8d89
