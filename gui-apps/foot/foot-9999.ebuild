@@ -62,8 +62,6 @@ virtwl() {
 	[[ -n $XDG_RUNTIME_DIR ]] || die "${FUNCNAME} needs XDG_RUNTIME_DIR to be set; try xdg_environment_reset"
 	tinywl -h >/dev/null || die 'tinywl -h failed'
 
-	# TODO: don't run addpredict in utility function. WLR_RENDERER=pixman doesn't work
-	addpredict /dev/dri
 	local VIRTWL VIRTWL_PID
 	coproc VIRTWL { WLR_BACKENDS=headless exec tinywl -s 'echo $WAYLAND_DISPLAY; read _; kill $PPID'; }
 	local -x WAYLAND_DISPLAY
@@ -71,9 +69,11 @@ virtwl() {
 
 	debug-print "${FUNCNAME}: $@"
 	"$@"
+	local r=$?
 
 	[[ -n $VIRTWL_PID ]] || die "tinywl exited unexpectedly"
 	exec {VIRTWL[0]}<&- {VIRTWL[1]}>&-
+	return $r
 }
 
 pkg_setup() {
@@ -99,25 +99,21 @@ pkg_setup() {
 
 		ati_cards=$(echo -n /dev/ati/card* | sed 's/ /:/g')
 		if [[ -n "${ati_cards}" ]] ; then
-			echo "${ati_cards}"
 			addpredict "${ati_cards}"
 		fi
 
 		mesa_cards=$(echo -n /dev/dri/card* | sed 's/ /:/g')
 		if [[ -n "${mesa_cards}" ]] ; then
-			echo "${mesa_cards}"
 			addpredict "${mesa_cards}"
 		fi
 
 		nvidia_cards=$(echo -n /dev/nvidia* | sed 's/ /:/g')
 		if [[ -n "${nvidia_cards}" ]] ; then
-			echo "${nvidia_cards}"
 			addpredict "${nvidia_cards}"
 		fi
 
 		render_cards=$(echo -n /dev/dri/renderD128* | sed 's/ /:/g')
 		if [[ -n "${render_cards}" ]] ; then
-			echo "${render_cards}"
 			addpredict "${render_cards}"
 		fi
 
